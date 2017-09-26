@@ -1,24 +1,7 @@
-# README
+# PDF reports
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+--------------
 
-Things you may want to cover:
+Application to demonstrate how to create a PDF using a Rails app.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Will be using Wicked PDF gem to create the file and the AWS SDK gem to upload the file to S3.
