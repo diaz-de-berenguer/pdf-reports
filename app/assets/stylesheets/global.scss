@@ -22,3 +22,9 @@ body {
 .slim {
 	font-weight: 200;
 }
+
+.has-error {
+	.form-control {
+		border-color: hsla(8, 100%, 70%, 1);
+	}
+}
