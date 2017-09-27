@@ -1,0 +1,28 @@
+<div class="container-fluid full-height">
+	<div class="row justify-content-md-center full-height">
+		<div class="col-md-8 inner-col full-height">
+			<h2 class="slim center">Generate a PDF report</h2>
+
+			<!-- Form -->
+			<%= simple_form_for :report, url: '#' do |f| %>
+				<div class="container-fluid">
+					<!-- Title -->
+					<div class="row justify-content-md-center">
+						<div class="col-md-10">
+							<p>Title</p>
+							<%= f.input :title, label: false %>
+						</div>
+					</div>
+
+					<!-- Body -->
+					<div class="row justify-content-md-center">
+						<div class="col-md-10">
+							<p>Body <small>(markdown)</small></p>
+							<%= f.input :body, label: false %>
+						</div>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
