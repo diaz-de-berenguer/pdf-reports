@@ -14,6 +14,9 @@ gem 'bootstrap', '~> 4.0.0.beta'
 # Redcarpet for Markdown
 gem 'redcarpet'
 
+# AWS SDK
+gem 'aws-sdk'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.6'
