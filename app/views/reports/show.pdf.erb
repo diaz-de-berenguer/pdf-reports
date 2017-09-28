@@ -1,0 +1,8 @@
+<% report ||= @report %>
+<% markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions = {}) %>
+
+<h1 style="text-align:center">
+	<%= report.title %>
+</h1>
+<hr>
+<%= markdown.render(report.body).html_safe %>

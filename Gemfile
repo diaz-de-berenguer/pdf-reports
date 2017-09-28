@@ -17,6 +17,13 @@ gem 'redcarpet'
 # AWS SDK
 gem 'aws-sdk'
 
+# Wicked PDF
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+
+# Set up ENV variables in application.yml
+gem "figaro"
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.6'
