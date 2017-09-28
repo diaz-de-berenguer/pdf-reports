@@ -3,33 +3,40 @@
 		<div class="col-lg-8 inner-col full-height">
 			<h2 class="slim center">Generate a PDF report</h2>
 
-			<!-- Form -->
-			<%= simple_form_for @report, url: reports_path do |f| %>
 				<div class="container-fluid">
 					<div class="row justify-content-lg-center">
 						<div class="col-lg-10">
-							<!-- Title -->
-							<p>Title</p>
-							<%= f.input :title, label: false, autofocus: true %>
 
-							<!-- Body -->
-							<p>Body <small>(markdown)</small></p>
-							<%= f.input :body, label: false, input_html: { rows: 8 } %>
+							<!-- Form -->
+							<%= simple_form_for @report, url: reports_path do |f| %>
+								<!-- Title -->
+								<p>Title</p>
+								<%= f.input :title, label: false, autofocus: true %>
 
-							<!-- Submit Button -->
-							<div class="row" style="padding-top:1em;">
-								<div class="col-lg-4">
-									<%= button_tag type: "submit", class: 'btn btn-info btn-block', data:
-									    { disable_with: 'Generating...' } do %>
-										Generate!
-									<% end %>
+								<!-- Body -->
+								<p>Body <small>(markdown)</small></p>
+								<%= f.input :body, label: false, input_html: { rows: 8 } %>
+
+								<!-- Submit Button -->
+								<div class="row" style="padding-top:1em;">
+									<div class="col-lg-4">
+										<%= button_tag type: "submit", class: 'btn btn-info btn-block', data:
+										    { disable_with: 'Generating...' } do %>
+											Generate!
+										<% end %>
+									</div>
+									<div class="col-lg-8" style="padding-top:0.5em">
+										<%= link_to report_path, class: 'float-right', target: '_blank' do %>
+											<small>View sample</small>
+										<% end %>
+									</div>
 								</div>
-							</div>
+							<% end %>
 
 						</div>
 					</div>
 				</div>
-			<% end %>
+
 		</div>
 	</div>
 </div>
