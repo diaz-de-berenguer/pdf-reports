@@ -3,6 +3,8 @@ class Report < ApplicationRecord
 	validate :upload_to_s3_and_validate_response, :on => :create
 	validates_presence_of :key, :bucket
 
+	after_create :delete_in_five_minutes
+
 	def temp_url
 		bucket = Aws::S3::Bucket.new(self.bucket)
 		object = bucket.object(self.key)
@@ -11,8 +13,8 @@ class Report < ApplicationRecord
 
 	def upload_to_s3
 	  # Set Buket and Key
-	  filename    = "#{self.id}-#{Time.now.strftime('%Y%m%d%H%M%S')}.pdf"
-	  self.key    = "pdf/#{filename}"
+	  filename    = "#{Time.now.strftime('%Y%m%d%H%M%S')}.pdf"
+	  self.key    = "temp/#{filename}"
 	  self.bucket = bucket_name
 
 	  # Get path for generated PDF. This is performed by the :create_pdf_path method.
@@ -60,6 +62,17 @@ class Report < ApplicationRecord
 	  return pdf_path
 	end
 
+	def remove_from_aws
+		begin
+			bucket = Aws::S3::Bucket.new(self.bucket)
+			object = bucket.object(self.key)
+			object.delete
+			return self.destroy
+		rescue
+			return false
+		end
+	end
+
 	def bucket_name
 	  return ENV['BUCKET_NAME']
 	end
@@ -67,7 +80,11 @@ class Report < ApplicationRecord
 	private
 
 		def upload_to_s3_and_validate_response
-		  response = self.upload_to_s3
-		  self.errors.add :base, "unable upload PDF" if response.error.present?
+		  response = self.upload_to_s3 unless self.title.nil? || self.body.nil?
+		  self.errors.add :base, "unable upload PDF" if response.try(:error).present?
+		end
+
+		def delete_in_five_minutes
+			CleanUpReportsWorker.perform_in(5.minutes, self.id)
 		end
 end
