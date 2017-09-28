@@ -21,3 +21,8 @@
 
 # Ignore the EC2 keys
 /ec2/
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
